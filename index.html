@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL Ambiental Consultoria | Licenciamento, CAR e gestão ambiental para empresas</title>
+<link rel="icon" type="image/svg+xml" href="assets/simbolo.svg">
+<meta name="description" content="Licenciamento ambiental, CAR/PRA, outorga de água, PGRS e capacitação de equipes. Consultoria técnica que resolve a papelada ambiental do seu negócio.">
+
+<!-- Hardening: restringe origens de script/estilo/fonte. frame-ancestors NAO funciona via
+     meta tag — configurar X-Frame-Options/CSP frame-ancestors no header do host. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Versao fixada + SRI: @latest permitiria execucao de codigo arbitrario caso o pacote
+     no CDN fosse comprometido. Ao atualizar a versao, recalcular o hash sha384. -->
+<script src="https://unpkg.com/lucide@1.27.0/dist/umd/lucide.min.js"
+        integrity="sha384-iGjGimQxA1QCAbLRiSWPFc+KsjPW3kLS/2Cub+yRgYfd4EUEx/dxoJ0MKyEsbjop"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+<style>
+/* =========================================================
+   PL Ambiental Consultoria — Landing Page institucional
+   Paleta oficial: azul institucional (#254A67) + verde
+   sustentabilidade (#3A7D47) + neutro (#8A8A8A). Fonte Inter.
+   ========================================================= */
+
+:root {
+  /* Azul institucional — confiança, header, H1/H2, footer */
+  --primary-800: #152A3B;
+  --primary-700: #1D3A51;
+  --primary-600: #254A67;
+  --primary-100: #CBD9E4;
+  --primary-50:  #EAF0F5;
+
+  /* Verde — ação/conversão, WhatsApp, CTAs, checkmarks */
+  --secondary-700: #2E6438;
+  --secondary-600: #3A7D47;
+  --secondary-100: #C7E2CC;
+  --secondary-50:  #EAF4EC;
+
+  /* Neutro — apoio */
+  --neutral-800: #4A4A4A;
+  /* neutral-700: variante de texto sobre fundo claro (branco / primary-50),
+     calculada para bater >=4.5:1 (~5:1) — neutral-600 (#8A8A8A) só dá
+     ~3.0-3.45:1 aqui, insuficiente para AA em texto. Usar neutral-600
+     normalmente (3:1 já basta em bordas/ícones, elementos não-textuais). */
+  --neutral-700: #666666;
+  --neutral-600: #8A8A8A;
+  --neutral-400: #B0B0B0;
+  --neutral-100: #E5E5E5;
+  --neutral-50:  #F5F5F5;
+
+  --white: #ffffff;
+  --font-body: 'Inter', sans-serif;
+  --transition: all 0.25s ease;
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--neutral-800);
+  background-color: var(--neutral-50);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+a { color: inherit; }
+
+/* Foco visível customizado — nunca removido sem substituto */
+:focus-visible {
+  outline: 2px solid var(--secondary-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+img, svg { max-width: 100%; }
+
+/* --- HEADER --- */
+.header {
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 1000;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--neutral-100);
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.header.is-scrolled {
+  box-shadow: 0 2px 12px rgba(21, 42, 59, 0.12);
+}
+
+.header-container { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+
+.logo { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; min-height: 44px; }
+.logo-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  object-fit: contain;
+}
+.logo-text {
+  color: var(--primary-700);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.15;
+}
+.logo-sub {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  color: var(--neutral-700);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.nav a:not(.btn-whatsapp) {
+  color: var(--primary-700);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 0.5rem 0.1rem;
+}
+.nav a:not(.btn-whatsapp):hover { color: var(--secondary-700); }
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--primary-700);
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- BUTTONS --- */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--secondary-600);
+  color: var(--white) !important;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: var(--transition);
+  padding: 0.65rem 1.25rem;
+  min-height: 44px;
+  white-space: nowrap;
+}
+.btn-whatsapp:hover, .btn-whatsapp:focus-visible { background-color: var(--secondary-700); }
+
+.btn-whatsapp-lg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--secondary-600);
+  color: var(--white) !important;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  font-size: 1.05rem;
+  min-height: 44px;
+  transition: var(--transition);
+}
+.btn-whatsapp-lg:hover, .btn-whatsapp-lg:focus-visible { background-color: var(--secondary-700); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border: 2px solid var(--white);
+  color: var(--white) !important;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  min-height: 44px;
+  transition: var(--transition);
+}
+.btn-ghost:hover, .btn-ghost:focus-visible { background-color: rgba(255,255,255,0.12); }
+
+.btn-ghost-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border: 2px solid var(--primary-600);
+  color: var(--primary-700) !important;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  min-height: 44px;
+  transition: var(--transition);
+}
+.btn-ghost-dark:hover, .btn-ghost-dark:focus-visible { background-color: var(--primary-50); }
+
+/* --- HERO --- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-700);
+  color: var(--white);
+  padding: 4rem 0 4.5rem;
+}
+
+.hero-watermark {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 40px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+.hero-watermark img { width: 65%; height: 65%; object-fit: contain; opacity: 0.07; }
+
+.hero-grid { position: relative; display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+
+.badge {
+  display: inline-block;
+  background: rgba(58, 125, 71, 0.25);
+  border: 1px solid rgba(199, 226, 204, 0.4);
+  color: var(--secondary-100);
+  padding: 0.35rem 0.9rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 1rem 0;
+  line-height: 1.2;
+  max-width: 22ch;
+}
+
+.hero p.lead { font-size: 1.05rem; opacity: 0.92; margin-bottom: 2rem; max-width: 52ch; }
+
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* --- SECTIONS --- */
+.section { padding: 4rem 0; }
+.bg-alt-blue { background-color: var(--primary-50); }
+.bg-alt-green { background-color: var(--secondary-50); }
+.text-white { color: var(--white); }
+.text-center { text-align: center; }
+
+.section-header { max-width: 640px; margin: 0 auto 2.5rem; }
+.section-header.align-left { margin-left: 0; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--secondary-700);
+  margin-bottom: 0.5rem;
+}
+.text-white .eyebrow { color: var(--secondary-100); }
+
+.section-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--primary-700);
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+.text-white .section-title { color: var(--white); }
+.section-subtitle { color: var(--neutral-800); font-size: 1rem; }
+.text-white .section-subtitle { color: rgba(255,255,255,0.88); }
+
+/* --- QUEM SOMOS --- */
+.grid-2 { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+.text-lead { font-size: 1.1rem; font-weight: 600; color: var(--primary-600); margin-bottom: 1rem; }
+
+.features-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.feature-item {
+  display: flex;
+  gap: 1rem;
+  background: var(--white);
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--neutral-100);
+}
+.feature-item .icon-wrap {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--secondary-100);
+  color: var(--secondary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feature-item h3 { margin-bottom: 0.3rem; color: var(--primary-700); font-size: 1rem; font-weight: 600; }
+.feature-item p { font-size: 0.95rem; color: var(--neutral-800); }
+
+/* --- SERVIÇOS (accordion) --- */
+.services-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--neutral-100);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.service-card:hover { border-color: var(--secondary-600); }
+
+.service-card-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  min-height: 44px;
+}
+.card-icon {
+  background: var(--primary-50);
+  color: var(--primary-600);
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.service-card-head h3 { font-weight: 600; color: var(--primary-700); font-size: 1.1rem; flex: 1; }
+.service-card-head .chevron {
+  color: var(--neutral-600);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+.service-card[data-open="true"] .chevron { transform: rotate(180deg); }
+
+.service-card-body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+.service-card[data-open="true"] .service-card-body { max-height: 900px; }
+
+.service-card-inner { padding: 0 1.5rem 1.5rem; }
+
+.service-card ul { list-style: none; }
+.service-card li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--neutral-800);
+}
+.service-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--secondary-600);
+}
+
+/* Sub-seção ilustrativa do ciclo de resíduos, dentro do card de Solo */
+.mini-process {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--neutral-100);
+}
+.mini-process h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.9rem;
+}
+.mini-process ol {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  counter-reset: step;
+}
+.mini-process li {
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-100);
+  border-radius: 10px;
+  padding: 0.75rem 0.85rem;
+  padding-left: 0.85rem;
+  font-size: 0.85rem;
+}
+.mini-process li::before { content: none; }
+.mini-process .step-num {
+  display: block;
+  font-weight: 700;
+  color: var(--secondary-700);
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+}
+
+/* --- COMO TRABALHAMOS (4 passos) --- */
+.process-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  counter-reset: step;
+}
+.process-steps li {
+  background: var(--white);
+  border: 1px solid var(--neutral-100);
+  border-radius: 14px;
+  padding: 1.5rem;
+  position: relative;
+}
+.process-steps .step {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--secondary-600);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.process-steps h3 { font-size: 1rem; margin-bottom: 0.3rem; color: var(--primary-700); font-weight: 600; }
+.process-steps p { font-size: 0.9rem; color: var(--neutral-800); }
+
+/* --- DIFERENCIAIS --- */
+.benefits-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+.benefit-card {
+  background: var(--white);
+  border: 1px solid var(--neutral-100);
+  border-radius: 16px;
+  padding: 1.75rem;
+}
+.benefit-card .icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--secondary-100);
+  color: var(--secondary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.benefit-card h3 { font-weight: 600; margin-bottom: 0.6rem; font-size: 1.1rem; color: var(--primary-700); }
+.benefit-card p { font-size: 0.95rem; color: var(--neutral-800); }
+
+/* --- CONTATO FINAL --- */
+.contact-final {
+  background: var(--primary-700);
+  color: var(--white);
+  text-align: center;
+  padding: 4rem 0;
+}
+.contact-final .section-title { color: var(--white); }
+.contact-final .section-subtitle { color: rgba(255,255,255,0.88); margin-bottom: 2rem; }
+.contact-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+/* --- FOOTER & FLOATING --- */
+.footer {
+  background-color: var(--primary-800);
+  color: var(--neutral-100);
+  padding: 2.5rem 0 1.5rem;
+  font-size: 0.9rem;
+}
+.footer a { color: var(--white); text-decoration: none; }
+.footer a:hover, .footer a:focus-visible { color: var(--secondary-100); }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.footer-logo { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.75rem; }
+.footer-logo .logo-mark { background: var(--white); padding: 5px; }
+.footer-col h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--neutral-400);
+  margin-bottom: 0.9rem;
+  font-weight: 700;
+}
+.footer-nav { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-social { display: flex; gap: 0.75rem; }
+.footer-social a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-social a:hover, .footer-social a:focus-visible { background: var(--secondary-600); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--neutral-400);
+  font-size: 0.85rem;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--secondary-600);
+  color: var(--white);
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(21, 42, 59, 0.35);
+  z-index: 1000;
+  transition: var(--transition);
+  text-decoration: none;
+}
+.whatsapp-float:hover, .whatsapp-float:focus-visible { background-color: var(--secondary-700); transform: scale(1.06); }
+.whatsapp-float .wa-label { display: none; }
+
+/* Recuado quando o footer entra na viewport, para não sobrepor conteúdo
+   (ver .whatsapp-float observer no script) */
+.whatsapp-float.is-footer-visible {
+  opacity: 0;
+  transform: scale(0.85) translateY(8px);
+  pointer-events: none;
+}
+
+/* --- SCROLL ANIMATIONS --- */
+.fade-in-up, .fade-in-left, .fade-in-right {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in-left { transform: translateX(-20px); }
+.fade-in-right { transform: translateX(20px); }
+.visible { opacity: 1; transform: translate(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up, .fade-in-left, .fade-in-right { opacity: 1; transform: none; }
+}
+
+/* --- RESPONSIVE --- */
+
+/* Mobile nav (< 1024px) */
+@media (max-width: 1023px) {
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.25rem 1.5rem 1.5rem;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--neutral-100);
+    box-shadow: 0 8px 16px rgba(21, 42, 59, 0.1);
+  }
+  .nav.active { display: flex; }
+  .nav a:not(.btn-whatsapp) { padding: 0.75rem 0.25rem; border-bottom: 1px solid var(--neutral-100); }
+  .nav .btn-whatsapp { margin-top: 0.75rem; justify-content: center; }
+  .mobile-toggle { display: flex; }
+}
+
+@media (min-width: 640px) {
+  .mini-process ol { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .hero h1 { font-size: 2.75rem; }
+  .section-title { font-size: 1.9rem; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: repeat(3, 1fr); align-items: start; }
+  .benefits-grid { grid-template-columns: repeat(3, 1fr); }
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+  .footer-bottom { flex-direction: row; justify-content: space-between; }
+}
+
+@media (min-width: 1024px) {
+  .hero { padding: 6rem 0; }
+  .hero h1 { font-size: 3.25rem; max-width: 18ch; }
+  .hero-grid { grid-template-columns: 1.15fr 0.85fr; gap: 3rem; }
+  .section { padding: 5.5rem 0; }
+  .process-steps { grid-template-columns: repeat(4, 1fr); }
+  .mini-process ol { grid-template-columns: repeat(6, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  .hero h1 { font-size: 3.5rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="header" id="siteHeader">
+  <div class="container header-container">
+    <a href="#home" class="logo">
+      <img src="assets/simbolo.svg" alt="PL Ambiental Consultoria" class="logo-mark" width="42" height="42">
+      <span class="logo-text">PL AMBIENTAL<span class="logo-sub">Consultoria</span></span>
+    </a>
+
+    <nav class="nav" id="siteNav">
+      <a href="#sobre">Quem somos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#processo">Como trabalhamos</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#contato">Contato</a>
+      <a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+        <i data-lucide="message-circle" aria-hidden="true"></i> Fale conosco
+      </a>
+    </nav>
+
+    <button class="mobile-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="siteNav">
+      <i data-lucide="menu" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <span class="hero-watermark" aria-hidden="true"><img src="assets/simbolo.svg" alt=""></span>
+  <div class="container hero-grid">
+    <div class="hero-content fade-in-up">
+      <span class="badge">Consultoria ambiental corporativa</span>
+      <h1>Licenciamento, CAR, outorga de água: a papelada ambiental que sua empresa não pode errar, resolvida por quem lida com isso todo dia.</h1>
+      <p class="lead">Diagnóstico técnico, cumprimento de condicionantes e documentação em dia — para sua operação evitar auto de infração, embargo e multa, e manter o CTF/IBAMA e o CAR regularizados.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-lg">
+          <i data-lucide="message-circle" aria-hidden="true"></i> Falar com um especialista
+        </a>
+        <a href="#servicos" class="btn-ghost">Ver serviços</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre" class="section bg-alt-blue">
+  <div class="container grid-2">
+    <div class="fade-in-left">
+      <span class="eyebrow">Quem somos</span>
+      <h2 class="section-title">Parceiros técnicos da sua conformidade ambiental</h2>
+      <p class="text-lead">Regularização fundiária, gestão hídrica, licenciamento e capacitação de equipe — acompanhados do diagnóstico até a entrega documental.</p>
+      <p>Atuamos junto de indústrias, produtores rurais e prestadores de serviço que precisam manter CAR, outorga de água, PGRS e condicionantes de licença em dia, sem tirar o time interno do foco na operação.</p>
+    </div>
+    <div class="features-list fade-in-right">
+      <div class="feature-item">
+        <span class="icon-wrap" aria-hidden="true"><i data-lucide="target"></i></span>
+        <div>
+          <h3>Diagnóstico por setor</h3>
+          <p>Levantamento específico para operação industrial, rural ou de serviços, antes de qualquer plano de ação.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="icon-wrap" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+        <div>
+          <h3>Acompanhamento de condicionantes</h3>
+          <p>Prazos de licença, outorga e CTF/IBAMA monitorados para nada vencer sem você saber.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicos" class="section">
+  <div class="container">
+    <div class="section-header text-center fade-in-up">
+      <span class="eyebrow">Serviços</span>
+      <h2 class="section-title">Três frentes técnicas, uma equipe acompanhando o processo</h2>
+      <p class="section-subtitle">Clique em cada área para ver o detalhamento técnico dos serviços.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card fade-in-up" data-open="true">
+        <button class="service-card-head" aria-expanded="true" aria-controls="painel-solo">
+          <span class="card-icon" aria-hidden="true"><i data-lucide="map-pin"></i></span>
+          <h3>Gestão de Solo e Território</h3>
+          <i data-lucide="chevron-down" class="chevron" aria-hidden="true"></i>
+        </button>
+        <div class="service-card-body" id="painel-solo">
+          <div class="service-card-inner">
+            <ul>
+              <li>Cadastro Ambiental Rural (CAR) e Programa de Regularização Ambiental (PRA)</li>
+              <li>Projeto de Recuperação de Áreas Degradadas (PRAD)</li>
+              <li>Monitoramento de áreas por satélite</li>
+              <li>Plano de Gerenciamento de Resíduos Sólidos (PGRS)</li>
+              <li>Atendimento de condicionantes de licença</li>
+              <li>Perícia ambiental</li>
+              <li>Cadastro Técnico Federal (CTF/IBAMA)</li>
+            </ul>
+
+            <div class="mini-process">
+              <h4>Ciclo de gestão de resíduos, na prática</h4>
+              <ol>
+                <li><span class="step-num">01</span>Geração e triagem</li>
+                <li><span class="step-num">02</span>Acondicionamento</li>
+                <li><span class="step-num">03</span>Coleta e transporte</li>
+                <li><span class="step-num">04</span>Tratamento e valorização</li>
+                <li><span class="step-num">05</span>Reincorporação</li>
+                <li><span class="step-num">06</span>Destinação final</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-card fade-in-up" data-open="false">
+        <button class="service-card-head" aria-expanded="false" aria-controls="painel-agua">
+          <span class="card-icon" aria-hidden="true"><i data-lucide="droplet"></i></span>
+          <h3>Água e Licenciamento</h3>
+          <i data-lucide="chevron-down" class="chevron" aria-hidden="true"></i>
+        </button>
+        <div class="service-card-body" id="painel-agua">
+          <div class="service-card-inner">
+            <ul>
+              <li>Outorga de Direito de Uso de Água</li>
+              <li>Projetos de licenciamento ambiental</li>
+              <li>Plano de Gerenciamento de Resíduos Líquidos (PGRL)</li>
+              <li>Interpretação e planejamento de ETA e ETE</li>
+              <li>Projeto de reuso de água residuária</li>
+              <li>Monitoramento hídrico por satélite</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-card fade-in-up" data-open="false">
+        <button class="service-card-head" aria-expanded="false" aria-controls="painel-capacitacao">
+          <span class="card-icon" aria-hidden="true"><i data-lucide="graduation-cap"></i></span>
+          <h3>Capacitação e Cultura Ambiental</h3>
+          <i data-lucide="chevron-down" class="chevron" aria-hidden="true"></i>
+        </button>
+        <div class="service-card-body" id="painel-capacitacao">
+          <div class="service-card-inner">
+            <ul>
+              <li>Capacitação de equipes</li>
+              <li>Auditoria interna preventiva</li>
+              <li>Educação ambiental em empresas e escolas</li>
+              <li>Palestras técnicas</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="processo" class="section bg-alt-green">
+  <div class="container">
+    <div class="section-header text-center fade-in-up">
+      <span class="eyebrow">Como trabalhamos</span>
+      <h2 class="section-title">Da primeira conversa à conformidade documentada</h2>
+      <p class="section-subtitle">Processo de parceria em 4 etapas — sem contrato de fidelização eterno, sem letra miúda.</p>
+    </div>
+    <ol class="process-steps fade-in-up">
+      <li><span class="step">01</span><h3>Diagnóstico</h3><p>Levantamento da situação documental e operacional atual, apontando riscos e pendências reais.</p></li>
+      <li><span class="step">02</span><h3>Plano de ação</h3><p>Priorização do que precisa ser resolvido primeiro, com prazos ligados a condicionantes e órgãos envolvidos.</p></li>
+      <li><span class="step">03</span><h3>Execução e acompanhamento</h3><p>Protocolo, interlocução técnica com o órgão ambiental e acompanhamento até resposta.</p></li>
+      <li><span class="step">04</span><h3>Entrega de conformidade</h3><p>Documentação organizada e prazos futuros mapeados, para a próxima renovação não pegar ninguém de surpresa.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="diferenciais" class="section">
+  <div class="container">
+    <div class="section-header text-center fade-in-up">
+      <span class="eyebrow">Diferenciais</span>
+      <h2 class="section-title">Por que empresas contratam a PL Ambiental</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-in-up">
+        <span class="icon-wrap" aria-hidden="true"><i data-lucide="file-check-2"></i></span>
+        <h3>Conformidade sem tradução por conta própria</h3>
+        <p>Você não perde tempo entendendo o que o IBAMA quer dizer com "condicionante" — a gente traduz, cumpre e documenta.</p>
+      </div>
+      <div class="benefit-card fade-in-up">
+        <span class="icon-wrap" aria-hidden="true"><i data-lucide="dollar-sign"></i></span>
+        <h3>Prevenção custa menos que o incidente</h3>
+        <p>Auto de infração, embargo, multa — o custo de resolver depois é sempre maior que o de prevenir antes.</p>
+      </div>
+      <div class="benefit-card fade-in-up">
+        <span class="icon-wrap" aria-hidden="true"><i data-lucide="calendar-clock"></i></span>
+        <h3>Prazo vencido nunca pega de surpresa</h3>
+        <p>Outorga, CAR e CTF/IBAMA têm data de renovação — acompanhamos o calendário para o protocolo sair antes do vencimento, não depois da notificação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="contact-final">
+  <div class="container fade-in-up">
+    <span class="eyebrow">Contato</span>
+    <h2 class="section-title">Precisa regularizar CAR, licença ou outorga de água?</h2>
+    <p class="section-subtitle">Manda a situação atual pelo WhatsApp e recebemos com um diagnóstico técnico inicial.</p>
+    <div class="contact-btns">
+      <a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-lg">
+        <i data-lucide="message-circle" aria-hidden="true"></i> Falar no WhatsApp agora
+      </a>
+      <a href="https://instagram.com/consultoriaambiental.pl" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+        <svg class="icon-instagram" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+        </svg> Ver no Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="assets/simbolo.svg" alt="PL Ambiental Consultoria" class="logo-mark" width="42" height="42">
+          <span class="logo-text" style="color: var(--white);">PL AMBIENTAL<span class="logo-sub" style="color: var(--neutral-400);">Consultoria</span></span>
+        </div>
+        <p style="color: var(--neutral-400); max-width: 40ch;">Consultoria ambiental corporativa: licenciamento, gestão hídrica, gestão de solo e capacitação de equipes.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Navegação</h3>
+        <ul class="footer-nav">
+          <li><a href="#sobre">Quem somos</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#processo">Como trabalhamos</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contato</h3>
+        <div class="footer-social">
+          <a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+            <i data-lucide="message-circle" aria-hidden="true"></i>
+          </a>
+          <a href="https://instagram.com/consultoriaambiental.pl" target="_blank" rel="noopener noreferrer" aria-label="Ver no Instagram">
+            <svg class="icon-instagram" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 PL Ambiental Consultoria. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+  <i data-lucide="message-circle" aria-hidden="true"></i>
+</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Ícones Lucide
+  if (window.lucide) lucide.createIcons();
+
+  /* --- Header: sombra ao scroll --- */
+  const header = document.getElementById("siteHeader");
+  const onScroll = () => {
+    if (window.scrollY > 8) header.classList.add("is-scrolled");
+    else header.classList.remove("is-scrolled");
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* --- Menu mobile: toggle, fecha com ESC e ao clicar em link, foco preso --- */
+  const menuToggle = document.getElementById("menuToggle");
+  const nav = document.getElementById("siteNav");
+
+  function closeMenu() {
+    nav.classList.remove("active");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
+
+  function openMenu() {
+    nav.classList.add("active");
+    menuToggle.setAttribute("aria-expanded", "true");
+    const firstLink = nav.querySelector("a");
+    if (firstLink) firstLink.focus();
+  }
+
+  if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = nav.classList.contains("active");
+      if (isOpen) closeMenu();
+      else openMenu();
+    });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth < 1024) closeMenu();
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("active")) {
+        closeMenu();
+        menuToggle.focus();
+      }
+    });
+
+    // Foco preso dentro do menu quando aberto (mobile)
+    nav.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab" || !nav.classList.contains("active")) return;
+      const focusable = nav.querySelectorAll("a, button");
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
+  /* --- WhatsApp flutuante: recua quando o footer entra na viewport,
+     para não sobrepor o conteúdo do footer em mobile (375px+) --- */
+  const waFloat = document.querySelector(".whatsapp-float");
+  const footerEl = document.querySelector(".footer");
+  if (waFloat && footerEl && "IntersectionObserver" in window) {
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            waFloat.classList.add("is-footer-visible");
+            waFloat.setAttribute("tabindex", "-1");
+          } else {
+            waFloat.classList.remove("is-footer-visible");
+            waFloat.removeAttribute("tabindex");
+          }
+        });
+      },
+      { threshold: 0 }
+    );
+    footerObserver.observe(footerEl);
+  }
+
+  /* --- Accordion de serviços --- */
+  document.querySelectorAll(".service-card-head").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = btn.closest(".service-card");
+      const isOpen = card.getAttribute("data-open") === "true";
+      card.setAttribute("data-open", String(!isOpen));
+      btn.setAttribute("aria-expanded", String(!isOpen));
+    });
+  });
+
+  /* --- Animações de entrada ao rolar a página --- */
+  const animatedElements = document.querySelectorAll(
+    ".fade-in-up, .fade-in-left, .fade-in-right"
+  );
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReducedMotion) {
+    animatedElements.forEach((el) => el.classList.add("visible"));
+  } else {
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
+  }
+});
+</script>
+</body>
+</html>
