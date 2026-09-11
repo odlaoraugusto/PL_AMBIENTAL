@@ -1,0 +1,16 @@
+{
+  "name": "pl-ambiental-landing",
+  "version": "1.0.0",
+  "description": "Landing page + painel de posts da PL Ambiental Consultoria",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}

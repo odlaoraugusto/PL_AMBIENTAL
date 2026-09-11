@@ -1,0 +1,29 @@
+# Deploy do site da PL Ambiental nesta VPS — mesmo padrão dos outros stacks
+# (traefik já rodando, domínio via sslip.io, sem precisar de DNS próprio).
+#
+# Uso (na VPS, dentro do checkout deste repo):
+#   docker compose -f docker-compose.vps.yml up -d --build
+services:
+  pl-ambiental:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pl-ambiental
+    restart: unless-stopped
+    volumes:
+      - pl_ambiental_data:/app/data
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pl-ambiental.rule=Host(`pl-ambiental.169-58-217-209.sslip.io`)"
+      - "traefik.http.routers.pl-ambiental.entrypoints=websecure"
+      - "traefik.http.routers.pl-ambiental.tls.certresolver=letsencrypt"
+      - "traefik.http.services.pl-ambiental.loadbalancer.server.port=3000"
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  pl_ambiental_data:

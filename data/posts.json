@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id": "seed1",
+      "image": "/uploads/seed-post-1.svg",
+      "caption": "Você sabia? CAR e CTF/IBAMA têm renovação periódica — perder o prazo pode gerar multa e embargo.",
+      "link": "https://www.instagram.com/plambientalconsultoria/",
+      "active": true,
+      "order": 0,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "seed2",
+      "image": "/uploads/seed-post-2.svg",
+      "caption": "Seu PGRS está atualizado com a operação atual? O plano precisa acompanhar mudanças de processo e volume.",
+      "link": "https://www.instagram.com/plambientalconsultoria/",
+      "active": true,
+      "order": 1,
+      "createdAt": "2026-01-02T00:00:00.000Z"
+    },
+    {
+      "id": "seed3",
+      "image": "/uploads/seed-post-3.svg",
+      "caption": "Auto de infração custa mais caro que a prevenção. Diagnóstico técnico antes do problema sai mais barato.",
+      "link": "https://www.instagram.com/plambientalconsultoria/",
+      "active": true,
+      "order": 2,
+      "createdAt": "2026-01-03T00:00:00.000Z"
+    }
+  ]
+}

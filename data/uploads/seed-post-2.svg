@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A7D47"/>
+      <stop offset="1" stop-color="#2E6438"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1350" fill="url(#g2)"/>
+  <circle cx="150" cy="1200" r="300" fill="#254A67" opacity="0.25"/>
+  <path d="M0 260 C 250 160 350 340 560 280 C 780 215 850 360 1080 300 L1080 0 L0 0 Z" fill="#1D3A51" opacity="0.5"/>
+  <g transform="translate(760,90)">
+    <path d="M60 260 C 30 210 30 150 70 100 C 60 150 80 190 110 210 C 100 160 120 100 170 70 C 150 120 155 165 175 195 C 190 150 230 120 270 115 C 235 145 220 180 225 215 C 260 195 300 195 330 215 C 295 220 265 245 255 270 L255 400 L235 400 L235 300 C 190 300 130 290 60 260 Z" fill="#EAF4EC" opacity="0.9"/>
+  </g>
+  <text x="120" y="560" font-family="Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="2" fill="#EAF4EC">DICA RÁPIDA</text>
+  <text x="120" y="640" font-family="Arial, sans-serif" font-size="54" font-weight="800" fill="#FFFFFF">Seu PGRS está</text>
+  <text x="120" y="705" font-family="Arial, sans-serif" font-size="54" font-weight="800" fill="#FFFFFF">atualizado com a</text>
+  <text x="120" y="770" font-family="Arial, sans-serif" font-size="54" font-weight="800" fill="#FFFFFF">operação atual?</text>
+  <text x="120" y="850" font-family="Arial, sans-serif" font-size="30" fill="rgba(255,255,255,0.85)">Mudou processo, volume ou</text>
+  <text x="120" y="890" font-family="Arial, sans-serif" font-size="30" fill="rgba(255,255,255,0.85)">tipo de resíduo? O plano de</text>
+  <text x="120" y="930" font-family="Arial, sans-serif" font-size="30" fill="rgba(255,255,255,0.85)">gerenciamento precisa acompanhar.</text>
+  <text x="120" y="1250" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">@plambientalconsultoria</text>
+</svg>

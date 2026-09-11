@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de Posts — PL Ambiental</title>
+<link rel="icon" href="../assets/icone-verde.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div id="login-screen" class="login-screen">
+  <form id="login-form" class="login-card">
+    <img src="../assets/logo-horizontal.png" alt="PL Ambiental" class="login-logo">
+    <h1>Painel de Novidades</h1>
+    <p class="hint">Entre com a senha do painel para gerenciar os posts exibidos no site.</p>
+    <label class="field">
+      <span>Senha</span>
+      <input type="password" id="login-password" required autocomplete="current-password">
+    </label>
+    <button type="submit" class="btn-primary">Entrar</button>
+    <p id="login-error" class="error" hidden>Senha incorreta. Tente novamente.</p>
+  </form>
+</div>
+
+<div id="app" class="app" hidden>
+  <header class="app-header">
+    <img src="../assets/logo-horizontal.png" alt="PL Ambiental" class="app-logo">
+    <div class="app-header-actions">
+      <a href="/#novidades" target="_blank" class="btn-ghost">Ver no site ↗</a>
+      <button id="settings-btn" class="btn-ghost">Configurações</button>
+      <button id="logout-btn" class="btn-outline">Sair</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="panel">
+      <h2>Novo post</h2>
+      <p class="hint">Publique aqui os cards que aparecem no carrossel "Direto do Instagram" da página inicial. Use imagens no formato retrato (proporção 4:5) para não cortar o conteúdo.</p>
+      <form id="create-form" class="post-form" enctype="multipart/form-data">
+        <label class="field">
+          <span>Imagem do post</span>
+          <input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/gif" required>
+        </label>
+        <label class="field">
+          <span>Legenda</span>
+          <textarea name="caption" rows="2" maxlength="220" placeholder="Texto curto que aparece sobre a imagem" required></textarea>
+        </label>
+        <label class="field">
+          <span>Link do post no Instagram (opcional)</span>
+          <input type="url" name="link" placeholder="https://www.instagram.com/p/...">
+        </label>
+        <button type="submit" class="btn-primary">Publicar post</button>
+        <span id="create-status" class="form-status"></span>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Posts publicados</h2>
+      <p class="hint">Ative/desative, reordene ou remova. A ordem daqui é a mesma ordem exibida no carrossel do site.</p>
+      <div id="posts-list" class="posts-list"></div>
+    </section>
+  </main>
+</div>
+
+<div id="settings-modal" class="modal" hidden>
+  <div class="modal-card">
+    <h2>Alterar senha do painel</h2>
+    <form id="password-form" class="post-form">
+      <label class="field">
+        <span>Senha atual</span>
+        <input type="password" name="currentPassword" required>
+      </label>
+      <label class="field">
+        <span>Nova senha (mínimo 6 caracteres)</span>
+        <input type="password" name="newPassword" minlength="6" required>
+      </label>
+      <div class="modal-actions">
+        <button type="button" id="settings-close" class="btn-ghost">Cancelar</button>
+        <button type="submit" class="btn-primary">Salvar nova senha</button>
+      </div>
+      <span id="password-status" class="form-status"></span>
+    </form>
+  </div>
+</div>
+
+<div id="edit-modal" class="modal" hidden>
+  <div class="modal-card">
+    <h2>Editar post</h2>
+    <form id="edit-form" class="post-form" enctype="multipart/form-data">
+      <input type="hidden" name="id">
+      <img id="edit-preview" class="edit-preview" alt="Prévia do post">
+      <label class="field">
+        <span>Substituir imagem (opcional)</span>
+        <input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/gif">
+      </label>
+      <label class="field">
+        <span>Legenda</span>
+        <textarea name="caption" rows="2" maxlength="220" required></textarea>
+      </label>
+      <label class="field">
+        <span>Link do post no Instagram (opcional)</span>
+        <input type="url" name="link">
+      </label>
+      <div class="modal-actions">
+        <button type="button" id="edit-close" class="btn-ghost">Cancelar</button>
+        <button type="submit" class="btn-primary">Salvar alterações</button>
+      </div>
+      <span id="edit-status" class="form-status"></span>
+    </form>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

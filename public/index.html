@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PL Ambiental Consultoria — Regularização ambiental corporativa</title>
+<meta name="description" content="Licenciamento ambiental, CAR, outorga de água, PGRS, diagnóstico técnico e acompanhamento de condicionantes para sua operação ficar regularizada.">
+<link rel="icon" href="assets/icone-verde.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <div class="wrap header-inner">
+    <a href="#home" class="brand">
+      <img src="assets/logo-horizontal.png" alt="PL Ambiental Consultoria">
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#novidades" class="nav-link">Novidades</a>
+      <a href="#sobre" class="nav-link">Quem somos</a>
+      <a href="#servicos" class="nav-link">Serviços</a>
+      <a href="#processo" class="nav-link">Como trabalhamos</a>
+      <a href="#diferenciais" class="nav-link">Diferenciais</a>
+      <a href="#contato" class="nav-link">Contato</a>
+      <a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" target="_blank" rel="noopener noreferrer" class="nav-cta">
+        <i data-lucide="message-circle" aria-hidden="true"></i> Fale conosco
+      </a>
+    </nav>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <i data-lucide="menu" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-noise" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-content">
+      <span class="hero-badge">Consultoria ambiental corporativa</span>
+      <h1>Sua regularização ambiental <span class="accent">está aqui</span>.</h1>
+      <p class="lede">Licenciamento, CAR, outorga de água, diagnóstico técnico, cumprimento de condicionantes e muito mais: para sua operação evitar auto de infração, embargo e multa, e manter o CTF/IBAMA e o CAR regularizados.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <i data-lucide="message-circle" aria-hidden="true"></i> Falar com um especialista
+        </a>
+        <a href="#servicos" class="btn btn-outline">Ver serviços</a>
+      </div>
+
+      <div class="hero-stats">
+        <div><strong>3</strong><span>Frentes técnicas integradas</span></div>
+        <div><strong>5</strong><span>Etapas, do diagnóstico à conformidade</span></div>
+        <div><strong>100%</strong><span>Acompanhamento até a entrega documental</span></div>
+      </div>
+    </div>
+
+    <div class="hero-graphic" id="hero-graphic" aria-hidden="true">
+      <svg viewBox="0 0 340 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M170 40 C 130 70 90 60 60 90 C 90 85 120 100 140 120 C 100 120 60 145 40 190 C 80 175 120 180 150 200 C 105 210 70 245 60 295 C 105 270 145 270 175 290 L175 380 L195 380 L195 260 C 240 255 285 235 305 195 C 270 210 235 200 215 175 C 250 165 280 135 290 95 C 260 115 225 115 200 95 C 220 80 230 55 225 30 C 205 55 185 60 170 40 Z" fill="rgba(199,226,204,0.14)"/>
+        <path d="M170 40 C 130 70 90 60 60 90 C 90 85 120 100 140 120 C 100 120 60 145 40 190 C 80 175 120 180 150 200 C 105 210 70 245 60 295 C 105 270 145 270 175 290 L175 380 L195 380 L195 260 C 240 255 285 235 305 195 C 270 210 235 200 215 175 C 250 165 280 135 290 95 C 260 115 225 115 200 95 C 220 80 230 55 225 30 C 205 55 185 60 170 40 Z" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+        <circle cx="90" cy="330" r="3" fill="var(--secondary-100)"/>
+        <circle cx="260" cy="150" r="3" fill="var(--secondary-100)"/>
+        <circle cx="230" cy="330" r="2.5" fill="rgba(255,255,255,0.6)"/>
+        <path d="M0 355 C 60 335 100 365 170 350 C 240 335 280 360 340 345" stroke="rgba(255,255,255,0.18)" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- NOVIDADES / POSTS (painel admin controla) -->
+<section id="novidades" class="novidades">
+  <div class="wrap">
+    <div class="section-head is-left reveal" data-reveal>
+      <span class="eyebrow">Direto do Instagram <i data-lucide="at-sign" style="width:14px;height:14px;"></i></span>
+      <h2 style="font-size:clamp(1.4rem,2.2vw,1.7rem);">Novidades, dicas e alertas que a gente publica por lá</h2>
+    </div>
+
+    <div class="post-carousel reveal" data-reveal id="post-carousel">
+      <!-- preenchido via JS a partir de /api/posts -->
+    </div>
+  </div>
+</section>
+
+<!-- QUEM SOMOS -->
+<section id="sobre" class="sobre">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <span class="eyebrow">Quem somos</span>
+      <h2>Parceiras técnicas da sua conformidade ambiental</h2>
+      <p style="margin:0 auto;">Regularização fundiária, gestão hídrica, licenciamento e capacitação de equipe — acompanhados do diagnóstico até a entrega documental, por quem executa cada etapa na prática.</p>
+    </div>
+
+    <div class="sobre-grid reveal" data-reveal>
+      <div class="sobre-photo">
+        <div class="pattern">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <path d="M200 30 C 160 55 130 50 105 75 C 130 72 155 85 170 102 C 138 104 108 122 92 155 C 122 145 152 148 175 163 C 140 172 115 198 108 235 C 140 218 168 218 190 232 L190 270 L206 270 L206 205 C 240 200 272 185 288 155 C 262 166 234 158 218 138 C 246 130 270 106 278 75 C 254 91 227 91 208 75 C 224 63 231 44 227 24 C 212 43 197 47 185 32" stroke="rgba(255,255,255,0.55)" stroke-width="2" fill="none"/>
+            <circle cx="130" cy="220" r="34" fill="rgba(255,255,255,0.12)"/>
+            <circle cx="270" cy="90" r="24" fill="rgba(255,255,255,0.1)"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="sobre-copy">
+        <div class="profile">
+          <h3>Paula</h3>
+          <p class="role">Engenheira Florestal</p>
+          <p class="bio">[Espaço reservado para uma breve descrição profissional — formação, área de atuação e experiência dessa sócia à frente dos projetos.]</p>
+        </div>
+        <div class="profile">
+          <h3>Larissa Ramos</h3>
+          <p class="role">Química</p>
+          <p class="bio">[Espaço reservado para uma breve descrição profissional — formação, área de atuação e experiência dessa sócia à frente dos projetos.]</p>
+        </div>
+
+        <div class="mini-features">
+          <div class="mini-feature">
+            <span class="icon"><i data-lucide="target"></i></span>
+            <div>
+              <h3>Diagnóstico por setor</h3>
+              <p>Levantamento específico para operação industrial, rural ou de serviços, antes de qualquer plano de ação.</p>
+            </div>
+          </div>
+          <div class="mini-feature">
+            <span class="icon"><i data-lucide="shield-check"></i></span>
+            <div>
+              <h3>Acompanhamento de condicionantes</h3>
+              <p>Prazos de licença, outorga e CTF/IBAMA monitorados para nada vencer sem você saber.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICOS -->
+<section id="servicos" class="servicos">
+  <span aria-hidden="true" class="services-watermark">
+    <img src="assets/icone-verde.png" alt="" style="width:100%;height:100%;object-fit:contain;">
+  </span>
+  <div class="wrap" style="position:relative;">
+    <div class="section-head reveal" data-reveal>
+      <span class="eyebrow">Serviços</span>
+      <h2>Várias frentes técnicas, uma equipe acompanhando o processo</h2>
+      <p style="margin:0 auto;">Arraste ou use os indicadores para ver o detalhamento técnico de cada frente.</p>
+    </div>
+
+    <div class="svc-carousel reveal" data-reveal id="svc-carousel">
+      <div class="svc-viewport">
+        <div class="svc-track" id="svc-track">
+
+          <div class="svc-slide">
+            <div class="svc-head">
+              <span class="svc-icon"><i data-lucide="map-pin"></i></span>
+              <h3>Gestão de Solo e Território</h3>
+            </div>
+            <ul class="svc-items">
+              <li>Cadastro Ambiental Rural (CAR) e Programa de Regularização Ambiental (PRA)</li>
+              <li>Projeto de Recuperação de Áreas Degradadas (PRAD)</li>
+              <li>Monitoramento de áreas por satélite</li>
+              <li>Plano de Gerenciamento de Resíduos Sólidos (PGRS)</li>
+              <li>Atendimento de condicionantes de licença</li>
+              <li>Perícia ambiental</li>
+              <li>Cadastro Técnico Federal (CTF/IBAMA)</li>
+            </ul>
+            <div class="svc-process">
+              <h4>Ciclo de gestão de resíduos, na prática</h4>
+              <div class="svc-process-grid">
+                <div class="svc-process-step"><span class="num">01</span>Geração e triagem</div>
+                <div class="svc-process-step"><span class="num">02</span>Acondicionamento</div>
+                <div class="svc-process-step"><span class="num">03</span>Coleta e transporte</div>
+                <div class="svc-process-step"><span class="num">04</span>Tratamento e valorização</div>
+                <div class="svc-process-step"><span class="num">05</span>Reincorporação</div>
+                <div class="svc-process-step"><span class="num">06</span>Destinação final</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="svc-slide">
+            <div class="svc-head">
+              <span class="svc-icon"><i data-lucide="droplet"></i></span>
+              <h3>Água e Licenciamento</h3>
+            </div>
+            <ul class="svc-items">
+              <li>Outorga de Direito de Uso de Água</li>
+              <li>Projetos de licenciamento ambiental</li>
+              <li>Plano de Gerenciamento de Resíduos Líquidos (PGRL)</li>
+              <li>Interpretação e planejamento de ETA e ETE</li>
+              <li>Projeto de reuso de água residuária</li>
+              <li>Monitoramento hídrico por satélite</li>
+            </ul>
+          </div>
+
+          <div class="svc-slide">
+            <div class="svc-head">
+              <span class="svc-icon"><i data-lucide="graduation-cap"></i></span>
+              <h3>Capacitação e Cultura Ambiental</h3>
+            </div>
+            <ul class="svc-items">
+              <li>Capacitação de equipes</li>
+              <li>Auditoria interna preventiva</li>
+              <li>Educação ambiental em empresas e escolas</li>
+              <li>Palestras técnicas</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="svc-controls">
+        <button class="svc-arrow" id="svc-prev" aria-label="Anterior"><i data-lucide="chevron-left"></i></button>
+        <div class="svc-dots" id="svc-dots"></div>
+        <button class="svc-arrow" id="svc-next" aria-label="Próximo"><i data-lucide="chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="marquee-wrap reveal" data-reveal>
+      <div class="marquee-track" id="marquee-track"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO TRABALHAMOS -->
+<section id="processo" class="processo">
+  <div class="wrap" style="position:relative;">
+    <div class="section-head reveal" data-reveal>
+      <span class="eyebrow">Nosso processo</span>
+      <h2><span class="soft">Da primeira conversa à</span> conformidade documentada</h2>
+      <p style="margin:0 auto;">Processo de parceria em 5 etapas.</p>
+    </div>
+
+    <div class="processo-path" aria-hidden="true">
+      <svg viewBox="0 0 1000 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 20 C 150 -10, 250 50, 380 20 S 620 -10, 750 20 S 900 40, 980 15" stroke="var(--secondary-600)" stroke-width="2" stroke-dasharray="1 10" stroke-linecap="round" fill="none" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step reveal reveal-stagger is-emphasis" data-reveal style="--i:0;">
+        <span class="bignum">01</span>
+        <span class="num">01 · DIAGNÓSTICO</span>
+        <h3>Diagnóstico</h3>
+        <p>Levantamento da situação documental e operacional atual, apontando riscos e pendências reais.</p>
+      </div>
+      <div class="process-step reveal reveal-stagger" data-reveal style="--i:1;">
+        <span class="bignum">02</span>
+        <span class="num">02 · PLANO</span>
+        <h3>Plano de ação</h3>
+        <p>Priorização do que precisa ser resolvido primeiro, com prazos ligados a condicionantes e órgãos envolvidos.</p>
+      </div>
+      <div class="process-step reveal reveal-stagger" data-reveal style="--i:2;">
+        <span class="bignum">03</span>
+        <span class="num">03 · EXECUÇÃO</span>
+        <h3>Execução</h3>
+        <p>Protocolo e interlocução técnica com o órgão ambiental até a resposta oficial.</p>
+      </div>
+      <div class="process-step reveal reveal-stagger is-emphasis" data-reveal style="--i:3;">
+        <span class="bignum">04</span>
+        <span class="num">04 · ENTREGA</span>
+        <h3>Entrega de conformidade</h3>
+        <p>Documentação organizada e prazos futuros mapeados, para a próxima renovação não pegar ninguém de surpresa.</p>
+      </div>
+      <div class="process-step reveal reveal-stagger" data-reveal style="--i:4;">
+        <span class="bignum">05</span>
+        <span class="num">05 · ACOMPANHAMENTO</span>
+        <h3>Acompanhamento</h3>
+        <p>Pós-venda com monitoramento contínuo de prazos e condicionantes, mantendo a conformidade em dia depois da entrega.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CITAÇÃO / DEPOIMENTO -->
+<section class="quote-strip">
+  <div class="wrap">
+    <div class="quote-box reveal" data-reveal>
+      <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+      <p class="quote-text">[Espaço reservado para um depoimento real de cliente sobre um processo de regularização conduzido pela PL Ambiental.]</p>
+      <div class="quote-author">
+        <span class="quote-avatar"><i data-lucide="quote"></i></span>
+        <span>[Nome do cliente] — [Empresa / segmento]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais" class="diferenciais">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <span class="eyebrow">Diferenciais</span>
+      <h2>Por que contratar a PL Ambiental?</h2>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-card reveal reveal-stagger" data-reveal style="--i:0;">
+        <span class="icon"><i data-lucide="file-check-2"></i></span>
+        <h3>Conformidade sem tradução por conta própria</h3>
+        <p>Você não perde tempo entendendo o que o IBAMA quer dizer com "condicionante" — a gente traduz, cumpre e documenta.</p>
+      </div>
+      <div class="dif-card reveal reveal-stagger" data-reveal style="--i:1;">
+        <span class="icon"><i data-lucide="dollar-sign"></i></span>
+        <h3>Prevenção custa menos que o incidente</h3>
+        <p>Auto de infração, embargo, multa — o custo de resolver depois é sempre maior que o de prevenir antes.</p>
+      </div>
+      <div class="dif-card reveal reveal-stagger" data-reveal style="--i:2;">
+        <span class="icon"><i data-lucide="calendar-clock"></i></span>
+        <h3>Prazo vencido nunca pega de surpresa</h3>
+        <p>Outorga, CAR e CTF/IBAMA têm data de renovação — acompanhamos o calendário para o protocolo sair antes do vencimento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="contato">
+  <span aria-hidden="true" class="contato-watermark">
+    <img src="assets/icone-navy.png" alt="" style="width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(1);">
+  </span>
+  <div class="wrap" style="position:relative;">
+    <span class="eyebrow" style="color:var(--secondary-100);">Contato</span>
+    <h2>Manda a situação atual pelo WhatsApp</h2>
+    <p class="lede">A gente recebe com um diagnóstico técnico inicial, sem enrolação.</p>
+
+    <div class="contato-actions">
+      <a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <i data-lucide="message-circle" aria-hidden="true"></i> Falar no WhatsApp agora
+      </a>
+      <a href="https://www.instagram.com/plambientalconsultoria/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+        Ver no Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/logo-horizontal-negativo.png" alt="PL Ambiental Consultoria">
+        <p>Consultoria ambiental corporativa: licenciamento, gestão hídrica, gestão de solo e capacitação de equipes.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Navegação</h3>
+        <ul class="footer-nav">
+          <li><a href="#novidades">Novidades</a></li>
+          <li><a href="#sobre">Quem somos</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#processo">Como trabalhamos</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contato</h3>
+        <div class="footer-social">
+          <a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+            <i data-lucide="message-circle" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/plambientalconsultoria/" target="_blank" rel="noopener noreferrer" aria-label="Ver no Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+          </a>
+          <a href="mailto:pl.ambientalconsultoria@gmail.com" aria-label="Enviar e-mail">
+            <i data-lucide="mail" aria-hidden="true"></i>
+          </a>
+        </div>
+        <ul class="footer-contacts">
+          <li><i data-lucide="phone" style="width:15px;height:15px;flex-shrink:0;"></i>(85) 98801-0166</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>@plambientalconsultoria</li>
+          <li><i data-lucide="mail" style="width:15px;height:15px;flex-shrink:0;"></i>pl.ambientalconsultoria@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 PL Ambiental Consultoria. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5585988010166?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20PL%20Ambiental" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp" class="wa-float" id="wa-float">
+  <i data-lucide="message-circle" aria-hidden="true"></i>
+</a>
+
+<script src="https://unpkg.com/lucide@1.27.0/dist/umd/lucide.min.js" integrity="sha384-iGjGimQxA1QCAbLRiSWPFc+KsjPW3kLS/2Cub+yRgYfd4EUEx/dxoJ0MKyEsbjop" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
