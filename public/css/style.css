@@ -155,7 +155,7 @@ nav.main-nav { display: flex; gap: 0.25rem; align-items: center; }
   display: inline-block; background: rgba(58,125,71,0.28); border: 1px solid rgba(199,226,204,0.4);
   color: var(--secondary-100); padding: 0.4rem 0.9rem; border-radius: 9px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.3px;
 }
-.hero h1 { font-weight: 700; font-size: clamp(1.55rem, 2.7vw, 2.15rem); margin: 1.1rem 0 1.5rem; line-height: 1.4; max-width: 56ch; letter-spacing: -0.01em; }
+.hero h1 { font-weight: 800; font-size: clamp(2.1rem, 4.4vw, 3.5rem); margin: 1.1rem 0 1.25rem; line-height: 1.14; max-width: 18ch; letter-spacing: -0.015em; }
 .hero h1 .accent { font-weight: 800; color: var(--secondary-100); }
 .hero p.lede { font-size: 1.06rem; opacity: 0.92; margin-bottom: 2.25rem; max-width: 52ch; }
 .hero h2.hero-subtitle { font-size: 1.06rem; font-weight: 400; opacity: 0.9; margin: 0 0 2.25rem; max-width: 52ch; line-height: 1.55; }
