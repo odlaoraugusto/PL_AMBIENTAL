@@ -266,7 +266,16 @@
       }
 
       function render() {
-        shells.forEach(function (shell, i) { shell.classList.toggle('is-active', i === active); });
+        var n = posts.length;
+        shells.forEach(function (shell, i) {
+          shell.classList.toggle('is-active', i === active);
+          // rotate visual order so the carousel feels circular: whichever post is
+          // active always sits in the middle, with its true prev/next neighbors
+          // (wrapping around) placed immediately beside it — including when
+          // active is the first or last post in the list.
+          var rel = (i - active + n) % n;
+          shell.style.order = rel > n / 2 ? rel - n : rel;
+        });
         dots.forEach(function (d, i) { d.classList.toggle('is-active', i === active); });
         center();
       }
