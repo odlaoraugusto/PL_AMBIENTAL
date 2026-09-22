@@ -71,7 +71,7 @@
     fio.observe(footerEl);
   }
 
-  /* ---------------- swipe helper (mobile drag/swipe for carousels) ---------------- */
+  /* ---------------- swipe helper (touch-only drag/swipe for carousels; desktop navigates by click) ---------------- */
   function enableSwipe(el, handlers) {
     if (!el) return;
     var startX = 0, startY = 0, dragging = false, moved = false;
@@ -80,7 +80,7 @@
     el.style.touchAction = 'pan-y';
 
     el.addEventListener('pointerdown', function (e) {
-      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (e.pointerType !== 'touch' && e.pointerType !== 'pen') return;
       dragging = true; moved = false;
       startX = e.clientX; startY = e.clientY;
       if (handlers.onStart) handlers.onStart();
@@ -120,9 +120,35 @@
     }).join('');
   }
 
+  /* ---------------- height animation helper (JS-driven; CSS height transitions from an
+     auto/undefined starting value are unreliable across browsers) ---------------- */
+  function animateHeight(el, toPx, duration) {
+    if (!el) return;
+    if (el._heightRaf) cancelAnimationFrame(el._heightRaf);
+    if (el._heightFallback) clearTimeout(el._heightFallback);
+    var from = el.getBoundingClientRect().height;
+    if (reducedMotion || Math.abs(from - toPx) < 1) { el.style.height = toPx + 'px'; return; }
+    var start = null;
+    function ease(t) { return 1 - Math.pow(1 - t, 3); }
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      el.style.height = (from + (toPx - from) * ease(p)) + 'px';
+      if (p < 1) { el._heightRaf = requestAnimationFrame(step); } else { el._heightRaf = null; }
+    }
+    el._heightRaf = requestAnimationFrame(step);
+    // safety net: if rAF is throttled/paused (backgrounded tab), still land on the
+    // correct final height instead of staying stuck mid-animation.
+    el._heightFallback = setTimeout(function () {
+      el.style.height = toPx + 'px';
+      if (el._heightRaf) { cancelAnimationFrame(el._heightRaf); el._heightRaf = null; }
+    }, duration + 120);
+  }
+
   /* ---------------- services carousel ---------------- */
   (function servicesCarousel() {
     var track = $('#svc-track');
+    var viewport = $('.svc-viewport');
     var dotsWrap = $('#svc-dots');
     var prevBtn = $('#svc-prev');
     var nextBtn = $('#svc-next');
@@ -136,9 +162,19 @@
     }).join('');
     var dots = $$('button', dotsWrap);
 
+    function setHeight(instant) {
+      var current = slides[active];
+      if (!current || !viewport) return;
+      var target = current.scrollHeight;
+      if (instant) { viewport.style.height = target + 'px'; }
+      else { animateHeight(viewport, target, 400); }
+    }
+    var initialized = false;
     function render() {
       track.style.transform = 'translateX(-' + (active * 100) + '%)';
       dots.forEach(function (d, i) { d.classList.toggle('is-active', i === active); });
+      setHeight(!initialized);
+      initialized = true;
     }
     function go(i) { active = (i + slides.length) % slides.length; render(); }
 
@@ -152,13 +188,14 @@
       carousel.addEventListener('mouseleave', function () { paused = false; });
     }
 
-    enableSwipe($('.svc-viewport', carousel), {
+    enableSwipe(viewport, {
       onStart: function () { paused = true; },
       onEnd: function () { paused = false; },
       onNext: function () { go(active + 1); },
       onPrev: function () { go(active - 1); },
     });
 
+    window.addEventListener('resize', function () { setHeight(true); });
     render();
     if (!reducedMotion) {
       setInterval(function () { if (!paused) go(active + 1); }, 6000);
