@@ -167,7 +167,7 @@
       if (!current || !viewport) return;
       var target = current.scrollHeight;
       if (instant) { viewport.style.height = target + 'px'; }
-      else { animateHeight(viewport, target, 400); }
+      else { animateHeight(viewport, target, 600); }
     }
     var initialized = false;
     function render() {
