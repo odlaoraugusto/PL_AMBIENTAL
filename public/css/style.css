@@ -301,8 +301,7 @@ nav.main-nav { display: flex; gap: 0.25rem; align-items: center; }
 .svc-dots button.is-active { width: 24px; border-radius: 5px; background: var(--secondary-600); }
 
 .marquee-wrap {
-  margin-top: 3.25rem; padding: 1.4rem 0; background: var(--primary-700); overflow: hidden; position: relative;
-  width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;
+  margin-top: 3.25rem; padding: 1.4rem 0; background: var(--primary-700); overflow: hidden; position: relative; width: 100%;
 }
 .marquee-track { display: flex; width: max-content; animation: plMarquee 30s linear infinite; }
 .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
