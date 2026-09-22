@@ -176,7 +176,7 @@ nav.main-nav { display: flex; gap: 0.25rem; align-items: center; }
 
 .post-carousel { max-width: 1100px; margin: 0 auto; }
 .post-viewport { overflow: hidden; padding: 0.75rem 0 0.5rem; }
-.post-track { display: flex; align-items: center; will-change: transform; }
+.post-track { display: flex; align-items: center; will-change: transform; transition: transform 0.55s var(--ease-swift); }
 .post-card-shell {
   position: relative; width: min(320px, 74vw); flex-shrink: 0; margin: 0 14px;
   transition: transform 0.5s var(--ease-swift), opacity 0.5s var(--ease-swift), filter 0.5s var(--ease-swift);
@@ -301,9 +301,8 @@ nav.main-nav { display: flex; gap: 0.25rem; align-items: center; }
 .svc-dots button.is-active { width: 24px; border-radius: 5px; background: var(--secondary-600); }
 
 .marquee-wrap {
-  margin-top: 3.25rem; padding: 1.4rem 0; background: var(--primary-700); overflow: hidden; position: relative; border-radius: 18px;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  margin-top: 3.25rem; padding: 1.4rem 0; background: var(--primary-700); overflow: hidden; position: relative;
+  width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;
 }
 .marquee-track { display: flex; width: max-content; animation: plMarquee 30s linear infinite; }
 .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
