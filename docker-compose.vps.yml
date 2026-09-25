@@ -1,5 +1,5 @@
 # Deploy do site da PL Ambiental nesta VPS — mesmo padrão dos outros stacks
-# (traefik já rodando, domínio via sslip.io, sem precisar de DNS próprio).
+# (traefik já rodando; domínio plambiental.com com www redirecionando para o domínio sem www).
 #
 # Uso (na VPS, dentro do checkout deste repo):
 #   docker compose -f docker-compose.vps.yml up -d --build
@@ -16,9 +16,18 @@ services:
       - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.pl-ambiental.rule=Host(`pl-ambiental.169-58-217-209.sslip.io`)"
+      # domínio principal (+ endereço sslip.io mantido durante a transição)
+      - "traefik.http.routers.pl-ambiental.rule=Host(`plambiental.com`) || Host(`pl-ambiental.169-58-217-209.sslip.io`)"
       - "traefik.http.routers.pl-ambiental.entrypoints=websecure"
       - "traefik.http.routers.pl-ambiental.tls.certresolver=letsencrypt"
+      # www -> domínio sem www (301)
+      - "traefik.http.routers.pl-ambiental-www.rule=Host(`www.plambiental.com`)"
+      - "traefik.http.routers.pl-ambiental-www.entrypoints=websecure"
+      - "traefik.http.routers.pl-ambiental-www.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.pl-ambiental-www.middlewares=pl-ambiental-www-redirect"
+      - "traefik.http.middlewares.pl-ambiental-www-redirect.redirectregex.regex=^https://www\\.plambiental\\.com/(.*)"
+      - "traefik.http.middlewares.pl-ambiental-www-redirect.redirectregex.replacement=https://plambiental.com/$${1}"
+      - "traefik.http.middlewares.pl-ambiental-www-redirect.redirectregex.permanent=true"
       - "traefik.http.services.pl-ambiental.loadbalancer.server.port=3000"
 
 networks:

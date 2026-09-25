@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://pl-ambiental.169-58-217-209.sslip.io/sitemap.xml
+Sitemap: https://plambiental.com/sitemap.xml

@@ -2,7 +2,7 @@
 
 Landing page institucional da **PL Ambiental**, consultoria ambiental corporativa que resolve a papelada ambiental de empresas — licenciamento, regularização fundiária, gestão hídrica e capacitação de equipes — para que indústrias, produtores rurais e prestadores de serviço evitem auto de infração, embargo e multa.
 
-🔗 **Site publicado:** https://pl-ambiental.169-58-217-209.sslip.io/
+🔗 **Site publicado:** https://plambiental.com/
 
 ## Sobre a empresa
 
