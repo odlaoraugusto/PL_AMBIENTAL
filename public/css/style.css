@@ -388,10 +388,22 @@ footer.site-footer { background: var(--secondary-700); color: var(--neutral-100)
 @keyframes plFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
 /* ============ RESPONSIVE ============ */
-/* Menu hambúrguer abaixo de 1280px: logo (~300px) + 6 links + CTA precisam de
-   ~1130px, mais do que o container tem em viewports menores (inclui o "modo
-   desktop" dos celulares, que renderiza em ~980px). */
-@media (max-width: 1279px) {
+/* Entre 1024 e 1279px o menu completo continua visível, só que compacto
+   (logo menor, links e botão mais justos, header um pouco mais largo). */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .header-inner.wrap { width: 96%; }
+  .brand img { height: 68px; }
+  .nav-link { font-size: 0.83rem; padding: 0.85rem 0.42rem; }
+  .nav-link::after { left: 0.42rem; right: 0.42rem; }
+  .nav-cta { padding: 0.55rem 0.9rem; margin-left: 0.3rem; font-size: 0.86rem; gap: 0.4rem; white-space: nowrap; }
+}
+@media (min-width: 1180px) and (max-width: 1279px) {
+  .brand img { height: 84px; }
+}
+
+/* Menu hambúrguer abaixo de 1024px (tablet, celular e o "modo desktop" do
+   celular, que renderiza em ~980px). */
+@media (max-width: 1023px) {
   .brand img { height: 84px; }
   nav.main-nav {
     display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #fff;
