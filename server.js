@@ -64,13 +64,68 @@ const upload = multer({
 });
 
 const app = express();
+// atrás do Traefik: 1 proxy confiável, para req.ip refletir o IP real do visitante
+app.set('trust proxy', 1);
 app.use(express.json());
 app.use(session({
   secret: 'pl-ambiental-admin-' + crypto.randomBytes(8).toString('hex'),
   resave: false,
   saveUninitialized: false,
-  cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 8 },
+  cookie: { httpOnly: true, sameSite: 'lax', secure: 'auto', maxAge: 1000 * 60 * 60 * 8 },
 }));
+
+// ---- Limite de tentativas de senha (por IP): 5 erros => bloqueio de 15 min ----
+const MAX_ATTEMPTS = 5;
+const LOCK_MS = 15 * 60 * 1000;
+const failures = new Map(); // ip -> { count, last, lockedUntil }
+
+function lockRemainingSeconds(ip) {
+  const rec = failures.get(ip);
+  if (!rec || !rec.lockedUntil || rec.lockedUntil <= Date.now()) return 0;
+  return Math.ceil((rec.lockedUntil - Date.now()) / 1000);
+}
+
+function registerFailure(ip) {
+  const now = Date.now();
+  let rec = failures.get(ip);
+  if (!rec || now - rec.last > LOCK_MS || (rec.lockedUntil && rec.lockedUntil <= now)) {
+    rec = { count: 0, last: now, lockedUntil: 0 };
+  }
+  rec.count += 1;
+  rec.last = now;
+  if (rec.count >= MAX_ATTEMPTS) rec.lockedUntil = now + LOCK_MS;
+  failures.set(ip, rec);
+  return rec;
+}
+
+function rejectIfLocked(req, res, next) {
+  const retryAfter = lockRemainingSeconds(req.ip);
+  if (retryAfter > 0) {
+    res.set('Retry-After', String(retryAfter));
+    return res.status(429).json({ error: 'too_many_attempts', retryAfter });
+  }
+  next();
+}
+
+function failureResponse(res, ip, errorCode) {
+  const rec = registerFailure(ip);
+  const retryAfter = lockRemainingSeconds(ip);
+  if (retryAfter > 0) {
+    res.set('Retry-After', String(retryAfter));
+    return res.status(429).json({ error: 'too_many_attempts', retryAfter });
+  }
+  return res.status(401).json({ error: errorCode, remaining: MAX_ATTEMPTS - rec.count });
+}
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, rec] of failures) if (now - rec.last > LOCK_MS && (!rec.lockedUntil || rec.lockedUntil <= now)) failures.delete(ip);
+}, 5 * 60 * 1000).unref();
+
+function safeEqualHex(a, b) {
+  const ba = Buffer.from(String(a), 'hex'), bb = Buffer.from(String(b), 'hex');
+  return ba.length === bb.length && crypto.timingSafeEqual(ba, bb);
+}
 
 app.use(express.static(PUBLIC_DIR));
 app.use('/uploads', express.static(UPLOADS_DIR));
@@ -81,16 +136,17 @@ function requireAuth(req, res, next) {
 }
 
 // ---- Auth ----
-app.post('/api/admin/login', (req, res) => {
+app.post('/api/admin/login', rejectIfLocked, (req, res) => {
   const config = ensureConfig();
   const { password } = req.body || {};
   if (!password) return res.status(400).json({ error: 'missing_password' });
-  const hash = hashPassword(password, config.salt);
-  if (hash === config.passwordHash) {
+  const hash = hashPassword(String(password), config.salt);
+  if (safeEqualHex(hash, config.passwordHash)) {
+    failures.delete(req.ip);
     req.session.authenticated = true;
     return res.json({ ok: true });
   }
-  return res.status(401).json({ error: 'invalid_password' });
+  return failureResponse(res, req.ip, 'invalid_password');
 });
 
 app.post('/api/admin/logout', (req, res) => {
@@ -101,12 +157,13 @@ app.get('/api/admin/session', (req, res) => {
   res.json({ authenticated: !!(req.session && req.session.authenticated) });
 });
 
-app.post('/api/admin/change-password', requireAuth, (req, res) => {
+app.post('/api/admin/change-password', requireAuth, rejectIfLocked, (req, res) => {
   const { currentPassword, newPassword } = req.body || {};
   const config = ensureConfig();
-  if (hashPassword(currentPassword || '', config.salt) !== config.passwordHash) {
-    return res.status(401).json({ error: 'invalid_current_password' });
+  if (!safeEqualHex(hashPassword(String(currentPassword || ''), config.salt), config.passwordHash)) {
+    return failureResponse(res, req.ip, 'invalid_current_password');
   }
+  failures.delete(req.ip);
   if (!newPassword || newPassword.length < 6) {
     return res.status(400).json({ error: 'weak_password' });
   }

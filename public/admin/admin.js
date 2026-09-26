@@ -34,8 +34,19 @@
     fetch('/api/admin/login', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: password }),
     }).then(function (r) {
-      if (r.ok) { showApp(); } else { errEl.hidden = false; }
-    }).catch(function () { errEl.hidden = false; });
+      if (r.ok) { showApp(); return; }
+      return r.json().catch(function () { return {}; }).then(function (d) {
+        if (r.status === 429) {
+          var mins = Math.max(1, Math.ceil((d.retryAfter || 900) / 60));
+          errEl.textContent = 'Muitas tentativas incorretas. Tente novamente em ' + mins + ' minuto' + (mins > 1 ? 's' : '') + '.';
+        } else if (typeof d.remaining === 'number') {
+          errEl.textContent = 'Senha incorreta. Restam ' + d.remaining + ' tentativa' + (d.remaining === 1 ? '' : 's') + '.';
+        } else {
+          errEl.textContent = 'Senha incorreta. Tente novamente.';
+        }
+        errEl.hidden = false;
+      });
+    }).catch(function () { errEl.textContent = 'Erro de conexão. Tente novamente.'; errEl.hidden = false; });
   });
 
   $('#logout-btn').addEventListener('click', function () {

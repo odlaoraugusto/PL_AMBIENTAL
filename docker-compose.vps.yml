@@ -16,8 +16,8 @@ services:
       - proxy
     labels:
       - "traefik.enable=true"
-      # domínio principal (+ endereço sslip.io mantido durante a transição)
-      - "traefik.http.routers.pl-ambiental.rule=Host(`plambiental.com`) || Host(`pl-ambiental.169-58-217-209.sslip.io`)"
+      # domínio principal
+      - "traefik.http.routers.pl-ambiental.rule=Host(`plambiental.com`)"
       - "traefik.http.routers.pl-ambiental.entrypoints=websecure"
       - "traefik.http.routers.pl-ambiental.tls.certresolver=letsencrypt"
       # www -> domínio sem www (301)
@@ -28,6 +28,14 @@ services:
       - "traefik.http.middlewares.pl-ambiental-www-redirect.redirectregex.regex=^https://www\\.plambiental\\.com/(.*)"
       - "traefik.http.middlewares.pl-ambiental-www-redirect.redirectregex.replacement=https://plambiental.com/$${1}"
       - "traefik.http.middlewares.pl-ambiental-www-redirect.redirectregex.permanent=true"
+      # endereço antigo (sslip.io) -> domínio principal (301)
+      - "traefik.http.routers.pl-ambiental-old.rule=Host(`pl-ambiental.169-58-217-209.sslip.io`)"
+      - "traefik.http.routers.pl-ambiental-old.entrypoints=websecure"
+      - "traefik.http.routers.pl-ambiental-old.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.pl-ambiental-old.middlewares=pl-ambiental-old-redirect"
+      - "traefik.http.middlewares.pl-ambiental-old-redirect.redirectregex.regex=^https://pl-ambiental\\.169-58-217-209\\.sslip\\.io/(.*)"
+      - "traefik.http.middlewares.pl-ambiental-old-redirect.redirectregex.replacement=https://plambiental.com/$${1}"
+      - "traefik.http.middlewares.pl-ambiental-old-redirect.redirectregex.permanent=true"
       - "traefik.http.services.pl-ambiental.loadbalancer.server.port=3000"
 
 networks:
